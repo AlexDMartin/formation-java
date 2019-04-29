@@ -16,7 +16,7 @@ public class RecipeIngredient {
   private Ingredient ingredient;
   private Long quantity;
   private String unit;
-  
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "ID", unique = true, nullable = false)
@@ -104,5 +104,5 @@ public class RecipeIngredient {
       return false;
     return true;
   }
-  
+
 }

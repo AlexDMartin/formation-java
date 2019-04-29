@@ -1,5 +1,7 @@
 package com.excilys.formation.controller;
 
+import com.excilys.formation.exception.IngredientControllerException;
+import com.excilys.formation.exception.IngredientServiceException;
 import com.excilys.formation.model.Ingredient;
 import com.excilys.formation.service.IngredientService;
 import java.util.List;
@@ -18,41 +20,63 @@ import org.springframework.web.bind.annotation.RestController;
 public class IngredientController {
 
   private IngredientService ingredientService;
-  
+
   private IngredientController(IngredientService ingredientService) {
     this.ingredientService = ingredientService;
   }
 
   @GetMapping(value = "/{id}", produces = "application/json")
-  public @ResponseBody Ingredient getById(@PathVariable Long id) {
-    return this.ingredientService.getById(id).get();
+  public @ResponseBody Ingredient getById(@PathVariable Long id) throws IngredientControllerException {
+    try {
+      return this.ingredientService.getById(id).get();
+    } catch (IngredientServiceException ingredientServiceException) {
+      throw new IngredientControllerException(ingredientServiceException.getMessage());
+    }
   }
-  
+
   @GetMapping(value = "/", produces = "application/json")
-  public @ResponseBody List<Ingredient> getAll() {
-    return this.ingredientService.getAll();
+  public @ResponseBody List<Ingredient> getAll() throws IngredientControllerException {
+    try {
+      return this.ingredientService.getAll();
+    } catch (IngredientServiceException ingredientServiceException) {
+      throw new IngredientControllerException(ingredientServiceException.getMessage());
+    }
   }
-  
+
   @PostMapping(value = "/", produces = "application/json")
-  public @ResponseBody Ingredient create(@RequestBody Ingredient ingredient) {
-    this.ingredientService.create(ingredient);
-    return ingredient; 
+  public @ResponseBody Ingredient create(@RequestBody Ingredient ingredient) throws IngredientControllerException {
+    try {
+
+      return this.ingredientService.create(ingredient);
+    } catch (IngredientServiceException ingredientServiceException) {
+      throw new IngredientControllerException(ingredientServiceException.getMessage());
+    }
   }
-  
+
   @PatchMapping(value = "/", produces = "application/json")
-  public @ResponseBody Ingredient update(@RequestBody Ingredient ingredient) {
-    this.ingredientService.update(ingredient);
-    return ingredient;
+  public @ResponseBody Ingredient update(@RequestBody Ingredient ingredient) throws IngredientControllerException {
+    try {
+      return this.ingredientService.update(ingredient);
+    } catch (IngredientServiceException ingredientServiceException) {
+      throw new IngredientControllerException(ingredientServiceException.getMessage());
+    }
   }
-  
+
   @DeleteMapping(value = "/", produces = "application/json")
-  public @ResponseBody Ingredient delete(@RequestBody Ingredient ingredient) {
-    this.ingredientService.delete(ingredient);
-    return ingredient;
+  public @ResponseBody Ingredient delete(@RequestBody Ingredient ingredient) throws IngredientControllerException {
+    try {
+      return this.ingredientService.delete(ingredient);
+    } catch (IngredientServiceException ingredientServiceException) {
+      throw new IngredientControllerException(ingredientServiceException.getMessage());
+    }
   }
-  
+
   @DeleteMapping(value = "/{id}", produces = "application/json")
-  public @ResponseBody Ingredient deleteById(@PathVariable Long id) {
-    return this.ingredientService.deleteById(id);
+  public @ResponseBody Ingredient deleteById(@PathVariable Long id) throws IngredientControllerException {
+    try {
+      return this.ingredientService.deleteById(id);
+    } catch (IngredientServiceException ingredientServiceException) {
+      throw new IngredientControllerException(ingredientServiceException.getMessage());
+    }
   }
 }
