@@ -1,9 +1,18 @@
 package com.excilys.formation.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity(name = "Ingredient")
+@Table(name = "Ingredient")
 public class Ingredient {
+  
   private Long id;
   private String name;
   
+  @Id
   public Long getId() {
     return id;
   }
@@ -12,6 +21,7 @@ public class Ingredient {
     this.id = id;
   }
 
+  @Column(name = "NAME")
   public String getName() {
     return name;
   }

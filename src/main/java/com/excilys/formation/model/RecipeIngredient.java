@@ -1,11 +1,21 @@
 package com.excilys.formation.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity(name = "RecipeIngredient")
+@Table(name = "RecipeIngredient")
 public class RecipeIngredient {
   private Long id;
   private Ingredient ingredient;
   private Long quantity;
   private String unit;
   
+  @Id
   public Long getId() {
     return id;
   }
@@ -14,6 +24,8 @@ public class RecipeIngredient {
     this.id = id;
   }
 
+  @OneToOne
+  @JoinColumn(name = "FK_INGREDIENT")
   public Ingredient getIngredient() {
     return ingredient;
   }
@@ -22,6 +34,7 @@ public class RecipeIngredient {
     this.ingredient = ingredient;
   }
 
+  @Column(name = "QUANTITY")
   public Long getQuantity() {
     return quantity;
   }
@@ -30,6 +43,7 @@ public class RecipeIngredient {
     this.quantity = quantity;
   }
 
+  @Column(name = "UNIT")
   public String getUnit() {
     return unit;
   }

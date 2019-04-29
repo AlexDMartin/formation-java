@@ -2,7 +2,15 @@ package com.excilys.formation.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
+@Entity(name = "Recipe")
+@Table(name = "Recipe")
 public class Recipe {
   private Long id;
   private String name;
@@ -11,7 +19,7 @@ public class Recipe {
   private Set<RecipeIngredient> ingredients = new HashSet<>();
   private Set<String> instructions = new HashSet<>();
 
-  
+  @Id
   public Long getId() {
     return id;
   }
@@ -20,6 +28,7 @@ public class Recipe {
     this.id = id;
   }
 
+  @Column(name = "NAME")
   public String getName() {
     return name;
   }
@@ -28,6 +37,7 @@ public class Recipe {
     this.name = name;
   }
 
+  @Column(name = "PICTURE")
   public String getPicture() {
     return picture;
   }
@@ -36,6 +46,7 @@ public class Recipe {
     this.picture = picture;
   }
 
+  @Column(name = "DESCRIPTION")
   public String getDescription() {
     return description;
   }
@@ -44,6 +55,7 @@ public class Recipe {
     this.description = description;
   }
 
+  @ManyToMany
   public Set<RecipeIngredient> getIngredients() {
     return ingredients;
   }
@@ -52,6 +64,7 @@ public class Recipe {
     this.ingredients = ingredients;
   }
 
+  @ElementCollection
   public Set<String> getInstructions() {
     return instructions;
   }
