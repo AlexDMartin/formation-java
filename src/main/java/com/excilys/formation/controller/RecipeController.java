@@ -5,6 +5,7 @@ import com.excilys.formation.exception.RecipeServiceException;
 import com.excilys.formation.model.Recipe;
 import com.excilys.formation.service.RecipeService;
 import java.util.List;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -25,6 +26,7 @@ public class RecipeController {
     this.recipeService = recipeService;
   }
 
+  @CrossOrigin
   @GetMapping(value = "/{id}", produces = "application/json")
   public @ResponseBody Recipe get(@PathVariable Long id) throws RecipeControllerException {
     try {      
@@ -35,6 +37,7 @@ public class RecipeController {
     }
   }
   
+  @CrossOrigin
   @GetMapping(value = "/", produces = "application/json")
   public @ResponseBody List<Recipe> getAll() throws RecipeControllerException {
     try {      
@@ -45,6 +48,7 @@ public class RecipeController {
     }
   }
   
+  @CrossOrigin
   @PostMapping(value = "/", produces = "application/json")
   public @ResponseBody Recipe create(@RequestBody Recipe recipe) throws RecipeControllerException {
     try {      
@@ -55,6 +59,7 @@ public class RecipeController {
     }
   }
   
+  @CrossOrigin
   @PatchMapping(value = "/", produces = "application/json")
   public @ResponseBody Recipe update(@RequestBody Recipe recipe) throws RecipeControllerException {
     try {      
@@ -65,6 +70,7 @@ public class RecipeController {
     }
   }
   
+  @CrossOrigin
   @DeleteMapping(value = "/", produces = "application/json")
   public @ResponseBody Recipe delete(@RequestBody Recipe recipe) throws RecipeControllerException {
     try {      
@@ -75,6 +81,7 @@ public class RecipeController {
     }
   }
   
+  @CrossOrigin
   @DeleteMapping(value = "/{id}", produces = "application/json")
   public @ResponseBody Recipe deleteById(@PathVariable Long id) throws RecipeControllerException {
     try {      

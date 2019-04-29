@@ -5,6 +5,7 @@ import com.excilys.formation.exception.IngredientServiceException;
 import com.excilys.formation.model.Ingredient;
 import com.excilys.formation.service.IngredientService;
 import java.util.List;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -25,6 +26,7 @@ public class IngredientController {
     this.ingredientService = ingredientService;
   }
 
+  @CrossOrigin
   @GetMapping(value = "/{id}", produces = "application/json")
   public @ResponseBody Ingredient getById(@PathVariable Long id) throws IngredientControllerException {
     try {
@@ -33,7 +35,8 @@ public class IngredientController {
       throw new IngredientControllerException(ingredientServiceException.getMessage());
     }
   }
-
+  
+  @CrossOrigin
   @GetMapping(value = "/", produces = "application/json")
   public @ResponseBody List<Ingredient> getAll() throws IngredientControllerException {
     try {
@@ -43,6 +46,7 @@ public class IngredientController {
     }
   }
 
+  @CrossOrigin
   @PostMapping(value = "/", produces = "application/json")
   public @ResponseBody Ingredient create(@RequestBody Ingredient ingredient) throws IngredientControllerException {
     try {
@@ -53,6 +57,7 @@ public class IngredientController {
     }
   }
 
+  @CrossOrigin
   @PatchMapping(value = "/", produces = "application/json")
   public @ResponseBody Ingredient update(@RequestBody Ingredient ingredient) throws IngredientControllerException {
     try {
@@ -62,6 +67,7 @@ public class IngredientController {
     }
   }
 
+  @CrossOrigin
   @DeleteMapping(value = "/", produces = "application/json")
   public @ResponseBody Ingredient delete(@RequestBody Ingredient ingredient) throws IngredientControllerException {
     try {
@@ -71,6 +77,7 @@ public class IngredientController {
     }
   }
 
+  @CrossOrigin
   @DeleteMapping(value = "/{id}", produces = "application/json")
   public @ResponseBody Ingredient deleteById(@PathVariable Long id) throws IngredientControllerException {
     try {
